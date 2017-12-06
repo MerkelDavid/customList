@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace customList
 {
-    //IEnumerable<T>
-    public class MyList<T>
+
+    public class MyList<T>: IEnumerable<T>
     {
 
         private int Capacity;
@@ -61,6 +62,21 @@ namespace customList
         //    Capacity = Count + 10;
         //    holder = new T[Capacity];
         //}
+        IEnumerator<T> IEnumerable<T>.GetEnumerator()
+        {
+            for (int i = 0; i < count; i++)
+            {
+                yield return holder[i];
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            for (int i = 0; i < count; i++)
+            {
+                yield return holder[i];
+            }
+        }
 
         public void Add(T value)
         {
@@ -126,6 +142,7 @@ namespace customList
 
             holder = newArray;
         }
+
         // T Where: Ienumerable
         //initializer (need Ienumerable,indexer,add)
     }

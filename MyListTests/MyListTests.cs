@@ -356,5 +356,57 @@ namespace MyListTests
 
         }
 
+        //enumerable Test
+        [TestMethod]
+
+        public void Enumeration_ListOfIntegers_True()
+        {
+            MyList<int> myListInstance = new MyList<int>();
+            myListInstance.Add(1);
+            myListInstance.Add(2);
+            myListInstance.Add(3);
+            myListInstance.Add(4);
+            myListInstance.Add(4);
+            myListInstance.Add(7);
+            myListInstance.Add(32);
+            myListInstance.Add(43);
+
+            MyList<int> testList = new MyList<int>();
+
+            foreach(int index in myListInstance)
+            {
+                testList.Add(index);
+            }
+
+            Assert.AreEqual(myListInstance[1], testList[1]);
+            Assert.AreEqual(myListInstance[2], testList[2]);
+        }
+
+        [TestMethod]
+        public void Enumeration_ListOfObject_True()
+        {
+            //arrange
+            MyList<TestClass> myListInstance = new MyList<TestClass>();
+            TestClass TonyStark = new TestClass(54, "Tony Stark");
+            myListInstance.Add(new TestClass(33, "Dude Guy"));
+            myListInstance.Add(new TestClass(33, "Dude Guy"));
+            myListInstance.Add(new TestClass(33, "Dude Guy"));
+            myListInstance.Add(new TestClass(33, "Dude Guy"));
+            myListInstance.Add(new TestClass(54, "Tony Stark"));
+            myListInstance.Add(new TestClass(33, "Dude Guy"));
+            myListInstance.Add(new TestClass(33, "Dude Guy"));
+
+            MyList<TestClass> testList = new MyList<TestClass>();
+
+            foreach (TestClass index in myListInstance)
+            {
+                testList.Add(index);
+            }
+
+            Assert.AreEqual(myListInstance, testList);
+        }
+
+
+
     }
 }
