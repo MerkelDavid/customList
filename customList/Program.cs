@@ -10,24 +10,31 @@ namespace customList
     {
         static void Main(string[] args)
         {
-                        MyList<TestClass> myListInstance = new MyList<TestClass>();
+/*                       MyList<TestClass> myListInstance = new MyList<TestClass>();
 
                         myListInstance.Add(new TestClass(33, "Dude Guy"));
                         myListInstance.Add(new TestClass(33, "Dude Guy"));
                         myListInstance.Add(new TestClass(54, "Tony Stark"));
-
-/*            MyList<char> myListInstance = new MyList<char>();
-
-            myListInstance.Add('a');
-            myListInstance.Add('b');
-            myListInstance.Add('c');
-            myListInstance.Add('d');
-            myListInstance.Add('e');
-            myListInstance.Add('f');
-            myListInstance.Add('g');
-            myListInstance.Add('h');
 */
-            Console.WriteLine(myListInstance.ToString());
+
+            MyList<int> myListInstance = new MyList<int>();
+
+            myListInstance.Add(1);
+            myListInstance.Add(2);
+            myListInstance.Add(3);
+            myListInstance.Add(4);
+            myListInstance.Add(5);
+            myListInstance.Add(6);
+            myListInstance.Add(7);
+            myListInstance.Add(8);
+
+            MyList<int> myListInstance2 = new MyList<int>();
+            myListInstance2.Add(1);
+            myListInstance2.Add(8);
+            myListInstance2.Add(64);
+
+            MyList<int> subtractedList = myListInstance - myListInstance2;
+            Console.WriteLine(subtractedList.ToString());
             Console.ReadKey();
         }
     }

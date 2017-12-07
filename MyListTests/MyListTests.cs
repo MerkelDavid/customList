@@ -529,7 +529,7 @@ namespace MyListTests
             myListInstance2.Add(2);
 
 
-            MyList<int> myListInstance3 = myListInstance1 + myListInstance2;
+            MyList<int> myListInstance3 = myListInstance1 - myListInstance2;
 
             MyList<int> goalListInstance = new MyList<int>();
 

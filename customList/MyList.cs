@@ -86,7 +86,6 @@ namespace customList
                 for (int i = 0; i < count; i++)
                 {
                     string currentValue = Convert.ToString(holder[i]);
-                    Console.WriteLine(currentValue);
                     ListString += currentValue + " ";
                 }
                 return ListString;
@@ -131,6 +130,7 @@ namespace customList
                 holder[i] = holder[i + 1];
             }
 
+            holder[count - 1] = default(T);
             DecrementCount();
         }
 
@@ -176,19 +176,62 @@ namespace customList
 
         public static MyList<T> operator -(MyList<T> ListOne, MyList<T> ListTwo)
         {
-            MyList<T> ListOneMinusTwo = ListOne;
+            MyList<T> ListOneMinusTwo = new MyList<T>();
 
-            for(int i=0; i<ListTwo.Count; i++)
+            for(int i=0; i<ListOne.Count; i++)
             {
-                for(int j=0; j < ListTwo.Count; j++)
+                bool isInListTwo = false;
+                for(int j = 0; j < ListTwo.Count; j++)
                 {
-                    if (ListOneMinusTwo[j].Equals(ListTwo[i]))
+                    if(ListOne[i].Equals(ListTwo[j]))
                     {
-                        ListOneMinusTwo.RemoveAt(i);
+                        isInListTwo = true;
                     }
+                }
+                if (!isInListTwo)
+                {
+                    ListOneMinusTwo.Add(ListOne[i]);
                 }
             }
             return ListOneMinusTwo;
+        }
+
+        public MyList<T> Zip (MyList<T> ListOne, MyList<T> ListTwo)
+        {
+            MyList<T> zippedList = new MyList<T>();
+            int smallerCount;
+            bool OneIsLarger;
+            if (ListOne.Count > ListTwo.Count)
+            {
+                OneIsLarger = true;
+                smallerCount = ListTwo.Count;
+            }
+            else
+            {
+                OneIsLarger = false; 
+                smallerCount = ListOne.Count;
+            }
+
+            for (int i = 0; i < smallerCount; i++)
+            {
+                zippedList.Add(ListOne[i]);
+                zippedList.Add(ListTwo[i]);
+            }
+            if (OneIsLarger) {
+                for(int i = (smallerCount - 1); i < ListOne.Count; i++)
+                {
+                    zippedList.Add(ListOne[i]);
+                }
+            }
+            else
+            {
+                for (int i = (smallerCount - 1); i < ListTwo.Count; i++)
+                {
+                    zippedList.Add(ListTwo[i]);
+                }
+            }
+            return zippedList;
+
         }
 
         }
