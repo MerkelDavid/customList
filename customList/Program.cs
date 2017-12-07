@@ -10,8 +10,25 @@ namespace customList
     {
         static void Main(string[] args)
         {
-            //List<string> foo = new List<string>() { "heelo" };
-            //foo[1] = "shwjdhj";
+            /*            MyList<TestClass> myListInstance = new MyList<TestClass>();
+
+                        myListInstance.Add(new TestClass(33, "Dude Guy"));
+                        myListInstance.Add(new TestClass(33, "Dude Guy"));
+                        myListInstance.Add(new TestClass(54, "Tony Stark"));
+            */
+            MyList<char> myListInstance = new MyList<char>();
+
+            myListInstance.Add('a');
+            myListInstance.Add('b');
+            myListInstance.Add('c');
+            myListInstance.Add('d');
+            myListInstance.Add('e');
+            myListInstance.Add('f');
+            myListInstance.Add('g');
+            myListInstance.Add('h');
+
+            Console.WriteLine(myListInstance.ToString());
+            Console.ReadKey();
         }
     }
 }

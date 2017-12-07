@@ -383,7 +383,7 @@ namespace MyListTests
         }
 
         [TestMethod]
-        public void Enumeration_ListOfObject_True()
+        public void Enumeration_ListOfObjects_True()
         {
             //arrange
             MyList<TestClass> myListInstance = new MyList<TestClass>();
@@ -406,7 +406,41 @@ namespace MyListTests
             Assert.AreEqual(myListInstance, testList);
         }
 
+        //ToString MyList Tests
+        [TestMethod]
 
+        public void ToString_listOfIntegers_StringOfIntegers ()
+        {
+            MyList<int> myListInstance = new MyList<int>();
+            string goalString = "1 2 3 4 4 7 32 43";
+            myListInstance.Add(1);
+            myListInstance.Add(2);
+            myListInstance.Add(3);
+            myListInstance.Add(4);
+            myListInstance.Add(4);
+            myListInstance.Add(7);
+            myListInstance.Add(32);
+            myListInstance.Add(43);
 
+            string Test = myListInstance.ToString();
+
+            Assert.AreEqual(goalString, Test);
+        }
+
+        [TestMethod]
+
+        public void ToString_listOfObjects_StringOfObjects()
+        {
+            MyList<TestClass> myListInstance = new MyList<TestClass>();
+            string goalString = "33 Dude Guy 33 Dude Guy 54 Tony Stark";
+
+            myListInstance.Add(new TestClass(33, "Dude Guy"));
+            myListInstance.Add(new TestClass(33, "Dude Guy"));
+            myListInstance.Add(new TestClass(54, "Tony Stark"));
+
+            string Test = myListInstance.ToString();
+
+            Assert.AreEqual(goalString, Test);
+        }
     }
 }

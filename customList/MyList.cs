@@ -78,6 +78,19 @@ namespace customList
             }
         }
 
+        public override string ToString()
+        {
+            string ListString = "";
+
+            for(int i = 0; i < count; i++)
+            {
+               string currentValue = Convert.ToString(holder[i]);
+                Console.WriteLine(currentValue);
+                ListString += currentValue + " ";
+            }
+            return ListString;
+        }
+
         public void Add(T value)
         {
           if ((Count + 1) > Capacity)
