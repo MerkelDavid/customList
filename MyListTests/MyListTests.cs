@@ -442,5 +442,132 @@ namespace MyListTests
 
             Assert.AreEqual(goalString, Test);
         }
+
+        //+ MyList Tests
+        [TestMethod]
+
+        public void PlusSymbol_StringOneStringTwo_StringOnePlusStringTwo()
+        {
+            MyList<int> myListInstance1 = new MyList<int>();
+            MyList<int> myListInstance2 = new MyList<int>();
+
+            myListInstance1.Add(1);
+            myListInstance1.Add(2);
+            myListInstance1.Add(3);
+            myListInstance1.Add(4);
+
+            myListInstance2.Add(4);
+            myListInstance2.Add(7);
+            myListInstance2.Add(32);
+            myListInstance2.Add(43);
+
+            MyList<int> myListInstance3 = myListInstance1 + myListInstance2;
+
+            MyList<int> goalListInstance = new MyList<int>();
+
+            goalListInstance.Add(1);
+            goalListInstance.Add(2);
+            goalListInstance.Add(3);
+            goalListInstance.Add(4);
+            goalListInstance.Add(4);
+            goalListInstance.Add(7);
+            goalListInstance.Add(32);
+            goalListInstance.Add(43);
+
+            Assert.AreEqual(goalListInstance.ToString(), myListInstance3.ToString());
+
+
+        }
+
+        [TestMethod]
+
+        public void PlusSymbol_ObjectOneObjectTwo_ObjectOnePlusObjectTwo()
+        {
+            MyList<TestClass> myListInstance1 = new MyList<TestClass>();
+            MyList<TestClass> myListInstance2 = new MyList<TestClass>();
+
+            myListInstance1.Add(new TestClass(33, "Dude Guy"));
+            myListInstance1.Add(new TestClass(33, "Dude Guy"));
+            myListInstance1.Add(new TestClass(33, "Dude Guy"));
+            myListInstance1.Add(new TestClass(33, "Dude Guy"));
+
+            myListInstance2.Add(new TestClass(54, "Tony Stark"));
+            myListInstance2.Add(new TestClass(33, "Dude Guy"));
+            myListInstance2.Add(new TestClass(33, "Dude Guy"));
+
+            MyList<TestClass> myListInstance3 = myListInstance1 + myListInstance2;
+
+            MyList<TestClass> goalListInstance = new MyList<TestClass>();
+
+            goalListInstance.Add(new TestClass(33, "Dude Guy"));
+            goalListInstance.Add(new TestClass(33, "Dude Guy"));
+            goalListInstance.Add(new TestClass(33, "Dude Guy"));
+            goalListInstance.Add(new TestClass(33, "Dude Guy"));
+            goalListInstance.Add(new TestClass(54, "Tony Stark"));
+            goalListInstance.Add(new TestClass(33, "Dude Guy"));
+            goalListInstance.Add(new TestClass(33, "Dude Guy"));
+
+            Assert.AreEqual(goalListInstance.ToString(), myListInstance3.ToString());
+
+
+        }
+
+        //- MyList Tests
+        [TestMethod]
+
+        public void MinusSymbol_StringOneStringTwo_StringOneMinusStringTwo()
+        {
+            MyList<int> myListInstance1 = new MyList<int>();
+            MyList<int> myListInstance2 = new MyList<int>();
+
+            myListInstance1.Add(1);
+            myListInstance1.Add(2);
+            myListInstance1.Add(3);
+            myListInstance1.Add(4);
+
+            myListInstance2.Add(4);
+            myListInstance2.Add(2);
+
+
+            MyList<int> myListInstance3 = myListInstance1 + myListInstance2;
+
+            MyList<int> goalListInstance = new MyList<int>();
+
+            goalListInstance.Add(1);
+            goalListInstance.Add(3);
+
+            Assert.AreEqual(goalListInstance.ToString(), myListInstance3.ToString());
+
+
+        }
+
+        [TestMethod]
+
+        public void MinusSymbol_ObjectOneObjectTwo_ObjectOneMinusObjectTwo()
+        {
+            MyList<TestClass> myListInstance1 = new MyList<TestClass>();
+            MyList<TestClass> myListInstance2 = new MyList<TestClass>();
+
+            myListInstance2.Add(new TestClass(54, "Tony Stark"));
+            myListInstance1.Add(new TestClass(33, "Dude Guy"));
+            myListInstance1.Add(new TestClass(33, "Dude Guy"));
+            myListInstance1.Add(new TestClass(33, "Dude Guy"));
+            myListInstance1.Add(new TestClass(33, "Dude Guy"));
+
+            myListInstance2.Add(new TestClass(33, "Dude Guy"));
+            myListInstance2.Add(new TestClass(33, "Dude Guy"));
+            myListInstance2.Add(new TestClass(336, "Dude Guy"));
+            myListInstance2.Add(new TestClass(33, "DudeGuy"));
+
+            MyList<TestClass> myListInstance3 = myListInstance1 - myListInstance2;
+
+            MyList<TestClass> goalListInstance = new MyList<TestClass>();
+
+            goalListInstance.Add(new TestClass(54, "Tony Stark"));
+
+            Assert.AreEqual(goalListInstance.ToString(), myListInstance3.ToString());
+
+
+        }
     }
 }

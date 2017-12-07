@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace customList
 {
 
@@ -80,15 +81,15 @@ namespace customList
 
         public override string ToString()
         {
-            string ListString = "";
+                string ListString = "";
 
-            for(int i = 0; i < count; i++)
-            {
-               string currentValue = Convert.ToString(holder[i]);
-                Console.WriteLine(currentValue);
-                ListString += currentValue + " ";
-            }
-            return ListString;
+                for (int i = 0; i < count; i++)
+                {
+                    string currentValue = Convert.ToString(holder[i]);
+                    Console.WriteLine(currentValue);
+                    ListString += currentValue + " ";
+                }
+                return ListString;
         }
 
         public void Add(T value)
@@ -156,7 +157,39 @@ namespace customList
             holder = newArray;
         }
 
-        // T Where: Ienumerable
-        //initializer (need Ienumerable,indexer,add)
-    }
+        public static MyList<T> operator +(MyList<T> ListOne, MyList<T> ListTwo)
+        {
+            MyList<T> ListOnePlusTwo = new MyList<T>();
+
+            for (int i = 0; i < ListOne.Count; i++)
+            {
+                ListOnePlusTwo.Add(ListOne[i]);
+            }
+
+            for (int i=0; i<ListTwo.Count; i++)
+            {
+                ListOnePlusTwo.Add(ListTwo[i]);
+            }
+
+            return ListOnePlusTwo;
+        }
+
+        public static MyList<T> operator -(MyList<T> ListOne, MyList<T> ListTwo)
+        {
+            MyList<T> ListOneMinusTwo = ListOne;
+
+            for(int i=0; i<ListTwo.Count; i++)
+            {
+                for(int j=0; j < ListTwo.Count; j++)
+                {
+                    if (ListOneMinusTwo[j].Equals(ListTwo[i]))
+                    {
+                        ListOneMinusTwo.RemoveAt(i);
+                    }
+                }
+            }
+            return ListOneMinusTwo;
+        }
+
+        }
 }
