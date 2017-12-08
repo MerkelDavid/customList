@@ -10,13 +10,6 @@ namespace customList
     {
         static void Main(string[] args)
         {
-/*                       MyList<TestClass> myListInstance = new MyList<TestClass>();
-
-                        myListInstance.Add(new TestClass(33, "Dude Guy"));
-                        myListInstance.Add(new TestClass(33, "Dude Guy"));
-                        myListInstance.Add(new TestClass(54, "Tony Stark"));
-*/
-
             MyList<int> myListInstance = new MyList<int>();
 
             myListInstance.Add(1);

@@ -412,7 +412,7 @@ namespace MyListTests
         public void ToString_listOfIntegers_StringOfIntegers ()
         {
             MyList<int> myListInstance = new MyList<int>();
-            string goalString = "1 2 3 4 4 7 32 43";
+            string goalString = "1 2 3 4 4 7 32 43 ";
             myListInstance.Add(1);
             myListInstance.Add(2);
             myListInstance.Add(3);
@@ -432,7 +432,7 @@ namespace MyListTests
         public void ToString_listOfObjects_StringOfObjects()
         {
             MyList<TestClass> myListInstance = new MyList<TestClass>();
-            string goalString = "33 Dude Guy 33 Dude Guy 54 Tony Stark";
+            string goalString = "33 Dude Guy 33 Dude Guy 54 Tony Stark ";
 
             myListInstance.Add(new TestClass(33, "Dude Guy"));
             myListInstance.Add(new TestClass(33, "Dude Guy"));
@@ -446,7 +446,7 @@ namespace MyListTests
         //+ MyList Tests
         [TestMethod]
 
-        public void PlusSymbol_StringOneStringTwo_StringOnePlusStringTwo()
+        public void PlusSymbol_IntListOneIntListTwo_IntListOnePlusIntListTwo()
         {
             MyList<int> myListInstance1 = new MyList<int>();
             MyList<int> myListInstance2 = new MyList<int>();
@@ -475,13 +475,11 @@ namespace MyListTests
             goalListInstance.Add(43);
 
             Assert.AreEqual(goalListInstance.ToString(), myListInstance3.ToString());
-
-
         }
 
         [TestMethod]
 
-        public void PlusSymbol_ObjectOneObjectTwo_ObjectOnePlusObjectTwo()
+        public void PlusSymbol_ObjectListOneObjectListTwo_ObjectListOnePlusObjectListTwo()
         {
             MyList<TestClass> myListInstance1 = new MyList<TestClass>();
             MyList<TestClass> myListInstance2 = new MyList<TestClass>();
@@ -512,10 +510,62 @@ namespace MyListTests
 
         }
 
+        [TestMethod]
+
+        public void PlusSymbol_AddingToAnEmptyList_IntListTwo()
+        {
+            MyList<int> myListInstance1 = new MyList<int>();
+            MyList<int> myListInstance2 = new MyList<int>();
+
+            myListInstance2.Add(4);
+            myListInstance2.Add(7);
+            myListInstance2.Add(32);
+            myListInstance2.Add(43);
+
+            MyList<int> myListInstance3 = myListInstance1 + myListInstance2;
+
+            MyList<int> goalListInstance = myListInstance2;
+
+            Assert.AreEqual(goalListInstance.ToString(), myListInstance3.ToString());
+        }
+
+
+        [TestMethod]
+
+        public void PlusSymbol_AddingAnEmptyList_IntListOne()
+        {
+            MyList<int> myListInstance1 = new MyList<int>();
+            MyList<int> myListInstance2 = new MyList<int>();
+
+            myListInstance1.Add(4);
+            myListInstance1.Add(7);
+            myListInstance1.Add(32);
+            myListInstance1.Add(43);
+
+            MyList<int> myListInstance3 = myListInstance1 + myListInstance2;
+
+            MyList<int> goalListInstance = myListInstance1;
+
+            Assert.AreEqual(goalListInstance.ToString(), myListInstance3.ToString());
+        }
+
+        [TestMethod]
+
+        public void PlusSymbol_AddingTwoEmptyLists_AnEmptyList()
+        {
+            MyList<int> myListInstance1 = new MyList<int>();
+            MyList<int> myListInstance2 = new MyList<int>();
+
+            MyList<int> myListInstance3 = myListInstance1 + myListInstance2;
+
+            MyList<int> goalListInstance = new MyList<int>();
+
+            Assert.AreEqual(goalListInstance.ToString(), myListInstance3.ToString());
+        }
         //- MyList Tests
         [TestMethod]
 
-        public void MinusSymbol_StringOneStringTwo_StringOneMinusStringTwo()
+        public void MinusSymbol_IntListOneIntListTwo_IntListOneMinusIntListTwo()
         {
             MyList<int> myListInstance1 = new MyList<int>();
             MyList<int> myListInstance2 = new MyList<int>();
@@ -537,13 +587,12 @@ namespace MyListTests
             goalListInstance.Add(3);
 
             Assert.AreEqual(goalListInstance.ToString(), myListInstance3.ToString());
-
-
         }
+
 
         [TestMethod]
 
-        public void MinusSymbol_ObjectOneObjectTwo_ObjectOneMinusObjectTwo()
+        public void MinusSymbol_ObjectListOneObjectListTwo_ObjectListOneMinusObjectListTwo()
         {
             MyList<TestClass> myListInstance1 = new MyList<TestClass>();
             MyList<TestClass> myListInstance2 = new MyList<TestClass>();
@@ -567,7 +616,187 @@ namespace MyListTests
 
             Assert.AreEqual(goalListInstance.ToString(), myListInstance3.ToString());
 
+        }
+
+        [TestMethod]
+
+        public void MinusSymbol_subtractingFromAnEmptyList_AnEmptyList()
+        {
+            MyList<int> myListInstance1 = new MyList<int>();
+            MyList<int> myListInstance2 = new MyList<int>();
+
+            myListInstance1.Add(1);
+            myListInstance1.Add(2);
+            myListInstance1.Add(3);
+            myListInstance1.Add(4);
+
+            MyList<int> myListInstance3 = myListInstance2 - myListInstance1;
+
+            MyList<int> goalListInstance = new MyList<int>();
+
+            Assert.AreEqual(goalListInstance.ToString(), myListInstance3.ToString());
+        }
+
+        [TestMethod]
+
+        public void MinusSymbol_subtractingAnEmptyList_OriginalList()
+        {
+            MyList<int> myListInstance1 = new MyList<int>();
+            MyList<int> myListInstance2 = new MyList<int>();
+
+            myListInstance1.Add(1);
+            myListInstance1.Add(2);
+            myListInstance1.Add(3);
+            myListInstance1.Add(4);
+
+            MyList<int> myListInstance3 = myListInstance1 - myListInstance2;
+
+            MyList<int> goalListInstance = myListInstance1;
+
+            Assert.AreEqual(goalListInstance.ToString(), myListInstance3.ToString());
+        }
+
+        [TestMethod]
+
+        public void MinusSymbol_subtractingTwoEmptyLists_AnEmptyList()
+        {
+            MyList<int> myListInstance1 = new MyList<int>();
+            MyList<int> myListInstance2 = new MyList<int>();
+
+            MyList<int> myListInstance3 = myListInstance1 - myListInstance2;
+
+            MyList<int> goalListInstance = myListInstance1;
+
+            Assert.AreEqual(goalListInstance.ToString(), myListInstance3.ToString());
+        }
+
+        [TestMethod]
+
+        public void MinusSymbol_listWithMultipleOfTheSameNumbers_ListOneMinusListTwo()
+        {
+            MyList<int> myListInstance1 = new MyList<int>();
+            MyList<int> myListInstance2 = new MyList<int>();
+
+            myListInstance1.Add(1);
+            myListInstance1.Add(2);
+            myListInstance1.Add(3);
+            myListInstance1.Add(4);
+
+            myListInstance2.Add(4);
+            myListInstance2.Add(4);
+            myListInstance2.Add(4);
+            myListInstance2.Add(4);
+            myListInstance2.Add(2);
+
+
+            MyList<int> myListInstance3 = myListInstance1 - myListInstance2;
+
+            MyList<int> goalListInstance = new MyList<int>();
+
+            goalListInstance.Add(1);
+            goalListInstance.Add(3);
+
+            Assert.AreEqual(goalListInstance.ToString(), myListInstance3.ToString());
+        }
+        //Zip MyList Tests
+        [TestMethod]
+        public void Zip_TwoEqualSizedIntLists_OneZippedList()
+        {
+            MyList<int> myListInstance1 = new MyList<int>();
+            MyList<int> myListInstance2 = new MyList<int>();
+
+            myListInstance1.Add(1);
+            myListInstance1.Add(2);
+            myListInstance1.Add(3);
+            myListInstance1.Add(4);
+
+            myListInstance2.Add(4);
+            myListInstance2.Add(7);
+            myListInstance2.Add(32);
+            myListInstance2.Add(43);
+
+            MyList<int> ZippedList = myListInstance1.Zip(myListInstance2);
+
+            Assert.AreEqual("1 4 2 7 3 32 4 43 ", ZippedList.ToString());
+        }
+
+        [TestMethod]
+        public void Zip_TwoUnequalSizedIntLists_OneZippedList()
+        {
+            MyList<int> myListInstance1 = new MyList<int>();
+            MyList<int> myListInstance2 = new MyList<int>();
+
+            myListInstance1.Add(1);
+            myListInstance1.Add(2);
+            myListInstance1.Add(3);
+            myListInstance1.Add(4);
+            myListInstance1.Add(1);
+            myListInstance1.Add(2);
+            myListInstance1.Add(3);
+            myListInstance1.Add(4);
+
+            myListInstance2.Add(4);
+            myListInstance2.Add(7);
+            myListInstance2.Add(32);
+            myListInstance2.Add(43);
+
+            MyList<int> ZippedList = myListInstance1.Zip(myListInstance2);
+
+            Assert.AreEqual("1 4 2 7 3 32 4 43 1 2 3 4 ", ZippedList.ToString());
+        }
+
+        [TestMethod]
+        public void Zip_EmptyInputString_OriginalList()
+        {
+            MyList<int> myListInstance1 = new MyList<int>();
+            MyList<int> myListInstance2 = new MyList<int>();
+
+            myListInstance1.Add(1);
+            myListInstance1.Add(2);
+            myListInstance1.Add(3);
+            myListInstance1.Add(4);
+            myListInstance1.Add(1);
+            myListInstance1.Add(2);
+            myListInstance1.Add(3);
+            myListInstance1.Add(4);
+
+            MyList<int> ZippedList = myListInstance1.Zip(myListInstance2);
+
+            Assert.AreEqual(myListInstance1.ToString(), ZippedList.ToString());
 
         }
+
+        [TestMethod]
+        public void Zip_EmptyBaseString_OriginalList()
+        {
+            MyList<int> myListInstance1 = new MyList<int>();
+            MyList<int> myListInstance2 = new MyList<int>();
+
+            myListInstance1.Add(1);
+            myListInstance1.Add(2);
+            myListInstance1.Add(3);
+            myListInstance1.Add(4);
+            myListInstance1.Add(1);
+            myListInstance1.Add(2);
+            myListInstance1.Add(3);
+            myListInstance1.Add(4);
+
+            MyList<int> ZippedList = myListInstance2.Zip(myListInstance1);
+
+            Assert.AreEqual(myListInstance1.ToString(), ZippedList.ToString());
+
+        }
+
+        [TestMethod]
+        public void Zip_TwoEmptyLists_OriginalList()
+        {
+            MyList<int> myListInstance1 = new MyList<int>();
+            MyList<int> myListInstance2 = new MyList<int>();
+
+            MyList<int> ZippedList = myListInstance2.Zip(myListInstance1);
+
+            Assert.AreEqual(myListInstance2.ToString(), ZippedList.ToString());
+        }
+
     }
 }

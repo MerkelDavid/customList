@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace customList
 {
 
-    public class MyList<T>: IEnumerable<T>
+    public class MyList<T> : IEnumerable<T>
     {
 
         private int Capacity;
@@ -47,7 +47,7 @@ namespace customList
                 {
                     throw new IndexOutOfRangeException("index has not yet been defined");
                 }
-             
+
             }
         }
         public MyList()
@@ -81,19 +81,19 @@ namespace customList
 
         public override string ToString()
         {
-                string ListString = "";
+            string ListString = "";
 
-                for (int i = 0; i < count; i++)
-                {
-                    string currentValue = Convert.ToString(holder[i]);
-                    ListString += currentValue + " ";
-                }
-                return ListString;
+            for (int i = 0; i < count; i++)
+            {
+                string currentValue = Convert.ToString(holder[i]);
+                ListString += currentValue + " ";
+            }
+            return ListString;
         }
 
         public void Add(T value)
         {
-          if ((Count + 1) > Capacity)
+            if ((Count + 1) > Capacity)
             {
                 IncreaseCapacity();
                 holder[count] = value;
@@ -110,9 +110,9 @@ namespace customList
         {
             bool isValueFound = false;
 
-            for(int i = 0; i < count; i++)
+            for (int i = 0; i < count; i++)
             {
-                if(holder[i].Equals(value))
+                if (holder[i].Equals(value))
                 {
                     RemoveAt(i);
                     isValueFound = true;
@@ -125,7 +125,7 @@ namespace customList
 
         public void RemoveAt(int index)
         {
-            for(int i = index; i < (count-1); i++)
+            for (int i = index; i < (count - 1); i++)
             {
                 holder[i] = holder[i + 1];
             }
@@ -159,14 +159,9 @@ namespace customList
 
         public static MyList<T> operator +(MyList<T> ListOne, MyList<T> ListTwo)
         {
-            MyList<T> ListOnePlusTwo = new MyList<T>();
+            MyList<T> ListOnePlusTwo = ListOne;
 
-            for (int i = 0; i < ListOne.Count; i++)
-            {
-                ListOnePlusTwo.Add(ListOne[i]);
-            }
-
-            for (int i=0; i<ListTwo.Count; i++)
+            for (int i = 0; i < ListTwo.Count; i++)
             {
                 ListOnePlusTwo.Add(ListTwo[i]);
             }
@@ -178,12 +173,12 @@ namespace customList
         {
             MyList<T> ListOneMinusTwo = new MyList<T>();
 
-            for(int i=0; i<ListOne.Count; i++)
+            for (int i = 0; i < ListOne.Count; i++)
             {
                 bool isInListTwo = false;
-                for(int j = 0; j < ListTwo.Count; j++)
+                for (int j = 0; j < ListTwo.Count; j++)
                 {
-                    if(ListOne[i].Equals(ListTwo[j]))
+                    if (ListOne[i].Equals(ListTwo[j]))
                     {
                         isInListTwo = true;
                     }
@@ -196,43 +191,46 @@ namespace customList
             return ListOneMinusTwo;
         }
 
-        public MyList<T> Zip (MyList<T> ListOne, MyList<T> ListTwo)
+
+        public MyList<T> Zip(MyList<T> OtherList)
         {
             MyList<T> zippedList = new MyList<T>();
-            int smallerCount;
-            bool OneIsLarger;
-            if (ListOne.Count > ListTwo.Count)
+            int smallerCount = getSmallerCount(OtherList);
+
+            for(int i = 0; i < smallerCount; i++)
             {
-                OneIsLarger = true;
-                smallerCount = ListTwo.Count;
-            }
-            else
-            {
-                OneIsLarger = false; 
-                smallerCount = ListOne.Count;
+                zippedList.Add(holder[i]);
+                zippedList.Add(OtherList[i]);
             }
 
-            for (int i = 0; i < smallerCount; i++)
+            if(smallerCount == Count)
             {
-                zippedList.Add(ListOne[i]);
-                zippedList.Add(ListTwo[i]);
-            }
-            if (OneIsLarger) {
-                for(int i = (smallerCount - 1); i < ListOne.Count; i++)
+                for(int i = smallerCount; i < OtherList.Count; i++)
                 {
-                    zippedList.Add(ListOne[i]);
+                    zippedList.Add(OtherList[i]);
                 }
             }
             else
             {
-                for (int i = (smallerCount - 1); i < ListTwo.Count; i++)
+                for(int i = smallerCount; i< Count; i++)
                 {
-                    zippedList.Add(ListTwo[i]);
+                    zippedList.Add(holder[i]);
                 }
             }
+
             return zippedList;
-
         }
 
+        private int getSmallerCount(MyList<T> OtherList)
+        {
+            if (Count > OtherList.Count)
+            {
+                return OtherList.Count;
+            }
+            else
+            {
+                return Count;
+            }
         }
+    }
 }
